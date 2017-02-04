@@ -7,19 +7,21 @@ sudo apt-get install ros-indigo-sicktoolbox ros-indigo-sicktoolbox-wrapper
 sudo apt-get install ros-indigo-joystick-drivers
 sudo apt-get install ros-indigo-novatel-span-driver
 
+MY_PATH=$(readlink -f  $(dirname $0))
+
 cd ~
-mkdir -p catvehicle_ws/src
-cd catvehicle_ws/src
+mkdir -p ${MY_PATH}/gazebo_autoware_ws/src
+cd ${MY_PATH}/gazebo_autoware_ws/src
 catkin_init_workspace
 
-cd ~/catvehicle_ws/src
+cd ${MY_PATH}/gazebo_autoware_ws/src
 git clone https://github.com/sprinkjm/catvehicle.git
 git clone https://github.com/sprinkjm/obstaclestopper.git
 cd ../
 catkin_make
 
-cd ~/catvehicle_ws
+cd ${MY_PATH}/gazebo_autoware_ws
 source devel/setup.bash
 
-mv -b ./catvehicle_ws/src/catvehicle/urdf/* ~/catvehicle_ws/src/catvehicle/urdf/
-mv -b ./run.sh ~/catvehicle_ws/
+cp -rf ./catvehicle_ws/src/catvehicle/urdf/ ${MY_PATH}/gazebo_autoware_ws/src/catvehicle/urdf/
+cp -rf ./run.sh ~/gazebo_autoware_ws/

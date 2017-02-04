@@ -31,5 +31,7 @@ echo "Process Manager"
 # boot gzserver
 ${TERMINAL} ${OPTION_CORE_GEOMETRY} ${OPTION_TITLE}="gzserver" --${OPTION_WORKING_DIR}=${MY_PATH} ${OPTION_COMMAND}="bash -c 'source ./devel/setup.bash; roslaunch catvehicle catvehicle_skidpan.launch'"&
 
-# boot runtime_manager
-${TERMINAL} ${OPTION_RM_GEOMETRY} ${OPTION_TITLE}="runtime_manager" --${OPTION_WORKING_DIR}=${MY_PATH} ${OPTION_COMMAND}="bash -c 'source ./devel/setup.bash; gzclient'"
+# boot gzclient
+${TERMINAL} ${OPTION_RM_GEOMETRY} ${OPTION_TITLE}="gzclient" --${OPTION_WORKING_DIR}=${MY_PATH} ${OPTION_COMMAND}="bash -c 'source ./devel/setup.bash; gzclient'"
+# boot rviz
+${TERMINAL} ${OPTION_RM_GEOMETRY} ${OPTION_TITLE}="rviz" --${OPTION_WORKING_DIR}=${MY_PATH} ${OPTION_COMMAND}="bash -c 'source ./devel/setup.bash; rviz'"
