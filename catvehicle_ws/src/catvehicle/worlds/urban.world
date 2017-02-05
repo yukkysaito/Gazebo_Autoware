@@ -1,6 +1,55 @@
 <?xml version="1.0" ?>
 <sdf version="1.4">
   <world name="vrc_task_1">
+    <!-- ground -->
+    <model name='ground_plane'>
+      <static>1</static>
+      <link name='link'>
+        <collision name='collision'>
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>100 100</size>
+            </plane>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>100</mu>
+                <mu2>50</mu2>
+              </ode>
+            </friction>
+            <bounce/>
+            <contact>
+              <ode/>
+            </contact>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='visual'>
+          <cast_shadows>0</cast_shadows>
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>1000 1000</size>
+            </plane>
+          </geometry>
+          <material>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <velocity_decay>
+          <linear>0</linear>
+          <angular>0</angular>
+        </velocity_decay>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+        <gravity>1</gravity>
+      </link>
+    </model>
     <!-- place user camera -->
     <gui>
       <camera name="user_camera">
@@ -56,12 +105,6 @@
       </attenuation>
     </light>
     <include>
-      <uri>model://vrc_heightmap_1</uri>
-    </include>
-    <include>
-      <uri>model://grass_plane</uri>
-    </include>
-    <include>
       <uri>model://construction_barrel</uri>
       <name>barrel_1</name>
       <pose>30 -1.0 0 0 0 0</pose>
@@ -105,87 +148,6 @@
       <name>speed_sign_5</name>
       <static>true</static>
       <pose>175 95 0 0 0 1.5707</pose>
-    </include>
-    <include>
-      <uri>model://gate</uri>
-      <name>gate_3</name>
-      <static>true</static>
-      <pose>198 103 2.0 0 0 1.5707</pose>
-    </include>
-    <include>
-      <uri>model://gate_number_4</uri>
-      <name>gate_number_4_a</name>
-      <static>true</static>
-      <pose>195.85 103 3.75 0 0 1.5707</pose>
-    </include>
-    <include>
-      <uri>model://gate_number_4</uri>
-      <name>gate_number_4_b</name>
-      <static>true</static>
-      <pose>200.15 103 3.75 0 0 1.5707</pose>
-    </include>
-    <include>
-      <uri>model://starting_pen</uri>
-      <static>true</static>
-      <pose>-10 7.0 0.0 0 0 3.1415</pose>
-    </include>
-    <include>
-      <uri>model://gate</uri>
-      <name>gate_0</name>
-      <static>true</static>
-      <pose>-10 -2 2.0 0 0 -1.5707</pose>
-    </include>
-    <include>
-      <uri>model://gate_number_1</uri>
-      <name>gate_number_1_a</name>
-      <static>true</static>
-      <pose>-7.85 -2 3.75 0 0 1.5707</pose>
-    </include>
-    <include>
-      <uri>model://gate_number_1</uri>
-      <name>gate_number_1_b</name>
-      <static>true</static>
-      <pose>-12.15 -2 3.75 0 0 1.5707</pose>
-    </include>
-    <include>
-      <uri>model://vehicle_gate</uri>
-      <name>vehiclegate_1</name>
-      <static>true</static>
-      <pose>5 0 2.0 0 0 0</pose>
-    </include>
-    <include>
-      <uri>model://gate_number_2</uri>
-      <name>gate_number_2_a</name>
-      <static>true</static>
-      <pose>5 -3.65 3.75 0 0 0</pose>
-    </include>
-    <include>
-      <uri>model://gate_number_2</uri>
-      <name>gate_number_2_b</name>
-      <static>true</static>
-      <pose>5 3.65 3.75 0 0 0</pose>
-    </include>
-    <include>
-      <uri>model://vehicle_gate</uri>
-      <name>vehiclegate_2</name>
-      <static>true</static>
-      <pose>190 100 2.0 0 0 0</pose>
-    </include>
-    <include>
-      <uri>model://gate_number_3</uri>
-      <name>gate_number_3_a</name>
-      <static>true</static>
-      <pose>190 96.35 3.75 0 0 0</pose>
-    </include>
-    <include>
-      <uri>model://gate_number_3</uri>
-      <name>gate_number_3_b</name>
-      <static>true</static>
-      <pose>190 103.65 3.75 0 0 0</pose>
-    </include>
-    <include>
-      <uri>model://drc_vehicle</uri>
-      <pose>0 0 0 0 0 0</pose>
     </include>
     <include>
       <uri>model://house_1</uri>
@@ -361,6 +323,76 @@
       <point>150 100 0.01</point>
       <point>200 100 0.01</point>
     </road>
+    <model name='person_standing'>
+      <link name='link'>
+        <inertial>
+          <pose>0 -0.1 0.95 0 -0 0</pose>
+          <mass>80</mass>
+          <inertia>
+            <ixx>24.88</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>25.73</iyy>
+            <iyz>0</iyz>
+            <izz>2.48</izz>
+          </inertia>
+        </inertial>
+        <collision name='bottom'>
+          <pose>0 -0.1 0.01 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>0.5 0.35 0.02</size>
+            </box>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <bounce/>
+            <friction>
+              <ode/>
+            </friction>
+            <contact>
+              <ode/>
+            </contact>
+          </surface>
+        </collision>
+        <collision name='person'>
+          <pose>0 0 0.02 0.04 -0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://person_standing/meshes/standing.dae</uri>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <bounce/>
+            <friction>
+              <ode/>
+            </friction>
+            <contact>
+              <ode/>
+            </contact>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <pose>0 0 0.02 0.04 -0 0</pose>
+          <geometry>
+            <mesh>
+              <uri>model://person_standing/meshes/standing.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <velocity_decay>
+          <linear>0</linear>
+          <angular>0</angular>
+        </velocity_decay>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+        <gravity>1</gravity>
+      </link>
+      <pose>117 21 0 0 -0 0</pose>
+      <static>0</static>
+    </model>
+
     <model name="road_boxes">
       <static>true</static>
       <link name="link">
@@ -491,3 +523,4 @@
 
   </world>
 </sdf>
+

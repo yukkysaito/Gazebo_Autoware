@@ -495,10 +495,10 @@ http://www.car-engineer.com/vehicle-inertia-calculation-tool/
 	<origin xyz="0 0 ${sensor_box/2 + 0.01}" rpy="0 0 0"/>
 	<axis xyz="0 0 1"/>
 	<parent link="camera_link"/>
-	<child link="velodyne_link"/>
+	<child link="velodyne"/>
 </joint>
 
-<link name="velodyne_link">
+<link name="velodyne">
         <collision>
           <origin xyz="0 0 0" rpy="0 0 0"/>
           <geometry>

@@ -17,12 +17,14 @@ catkin_init_workspace
 cd ${MY_PATH}/gazebo_autoware_ws/src
 git clone https://github.com/sprinkjm/catvehicle.git
 git clone https://github.com/sprinkjm/obstaclestopper.git
-cp -rf ./catvehicle_ws/src/point_cloud_converter ${MY_PATH}/gazebo_autoware_ws/src/
+cp -rf ${MY_PATH}/catvehicle_ws/src/point_cloud_converter ${MY_PATH}/gazebo_autoware_ws/src/
 cd ../
 catkin_make
 
 cd ${MY_PATH}/gazebo_autoware_ws
 source devel/setup.bash
 
-cp -rf ./catvehicle_ws/src/catvehicle/urdf/ ${MY_PATH}/gazebo_autoware_ws/src/catvehicle/urdf/
-cp -rf ./run.sh ~/gazebo_autoware_ws/
+cd ${MY_PATH}
+cp -rf ./catvehicle_ws/src/catvehicle/urdf/* ./gazebo_autoware_ws/src/catvehicle/urdf/
+cp -rf ./catvehicle_ws/src/catvehicle/launch/catvehicle.launch ./gazebo_autoware_ws/src/catvehicle/launch/
+cp -rf ./run.sh ./gazebo_autoware_ws/

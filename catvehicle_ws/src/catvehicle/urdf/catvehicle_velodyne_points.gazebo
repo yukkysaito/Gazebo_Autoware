@@ -34,12 +34,12 @@ Sensors are included separately, based on the arguments passed to the xacro incl
 -->
 <robot>
 
-<gazebo reference="velodyne_link">
+<gazebo reference="velodyne">
    <mu1>0.6</mu1>
    <mu2>0.5</mu2>
 </gazebo>
 
-<gazebo reference="velodyne_link">
+<gazebo reference="velodyne">
         <sensor type="ray" name="lidar_sensor">
               <pose>0 0 0 0 0 0</pose>
                    <visualize>false</visualize>
@@ -70,7 +70,7 @@ Sensors are included separately, based on the arguments passed to the xacro incl
                    <topicName>/cat/laser/scan</topicName>
                       <frameName>laser_link</frameName>  -->
 			   <plugin name="laser_controller" filename="libgazebo_ros_block_laser.so">
-			      <frameName>velodyne_link</frameName>
+			      <frameName>velodyne</frameName>
 			      <hokuyoMinIntensity>101</hokuyoMinIntensity>
 			      <robotNamespace>/$(arg roboname)</robotNamespace>
 			      <topicName>points_raw</topicName>
